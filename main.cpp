@@ -1,7 +1,7 @@
 #include <windows.h>
 #include <assert.h>
 #include <fstream>
-
+#include <string>
 #include <iostream>
 #include <stdlib.h>
 
@@ -14,7 +14,12 @@
 #pragma comment(lib, "winmm.lib")
 #include "imageloader.h"
 
+
 using namespace std;
+
+
+
+string DIRECTORY = "C:\\Users\\User\\Documents\\GLUT_Projects\\Memorial";
 
 void drawTriangle(GLuint texid, GLfloat texRepetation, GLfloat x1,GLfloat y1,GLfloat z1,GLfloat x2,GLfloat y2,GLfloat z2,GLfloat x3,GLfloat y3,GLfloat z3);
 void drawLines(GLfloat x1,GLfloat y1,GLfloat z1,GLfloat x2,GLfloat y2,GLfloat z2);
@@ -93,7 +98,8 @@ GLuint _textureId6;
 
 
 void initRendering() {
-	glEnable(GL_DEPTH_TEST);
+
+    glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_NORMALIZE);
@@ -106,20 +112,20 @@ void initRendering() {
 	//which stores the pixels' colors in the format we want.
 	//Image* image = loadBMP("C:\\Users\\student\\Desktop\\Desktop\\working-texture\\a.bmp");
 
-	Image* image = loadBMP("C:\\Users\\User\\Documents\\GLUT_Projects\\Memorial\\concrete.bmp");
+    Image* image = loadBMP((DIRECTORY+"\\concrete.bmp").c_str());
 
 	//Image* image1 = loadBMP("C:\\Users\\student\\Desktop\\Desktop\\working-texture\\vtr.bmp");
-	Image* image1 = loadBMP("C:\\Users\\User\\Documents\\GLUT_Projects\\Memorial\\brick.bmp");
+	Image* image1 = loadBMP((DIRECTORY+"\\brick.bmp").c_str());
 
-	Image* image2 = loadBMP("C:\\Users\\User\\Documents\\GLUT_Projects\\Memorial\\grass.bmp");
+	Image* image2 = loadBMP((DIRECTORY+"\\grass.bmp").c_str());
 
-	Image* image3 = loadBMP("C:\\Users\\User\\Documents\\GLUT_Projects\\Memorial\\darkconcrete.bmp");
+	Image* image3 = loadBMP((DIRECTORY+"\\darkconcrete.bmp").c_str());
 
-    Image* image4 = loadBMP("C:\\Users\\User\\Documents\\GLUT_Projects\\Memorial\\Flag.bmp");
+    Image* image4 = loadBMP((DIRECTORY+"\\Flag.bmp").c_str());
 
-    Image* image5 = loadBMP("C:\\Users\\User\\Documents\\GLUT_Projects\\Memorial\\water.bmp");
+    Image* image5 = loadBMP((DIRECTORY+"\\water.bmp").c_str());
 
-    Image* image6 = loadBMP("C:\\Users\\User\\Documents\\GLUT_Projects\\Memorial\\brick2.bmp");
+    Image* image6 = loadBMP((DIRECTORY+"\\brick2.bmp").c_str());
 
 
 
@@ -326,7 +332,7 @@ void update(int v){
 }
 
 int main(int argc, char** argv) {
-    PlaySound("C:\\Users\\User\\Documents\\GLUT_Projects\\Memorial\\National_Anthem.wav", NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
+    PlaySound((DIRECTORY+"\\National_Anthem.wav").c_str(), NULL, SND_ASYNC|SND_FILENAME|SND_LOOP);
     glutTimerFunc(50,update,0);
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
